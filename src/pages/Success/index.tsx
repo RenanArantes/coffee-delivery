@@ -1,5 +1,11 @@
+import { Header } from '../../components/Header'
 import { SuccessContainer } from './styles'
 
 export function Success() {
-  return <SuccessContainer>Success!!</SuccessContainer>
+  return (
+    <SuccessContainer>
+      <Header />
+      Success!!
+    </SuccessContainer>
+  )
 }
