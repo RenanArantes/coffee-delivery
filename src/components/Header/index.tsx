@@ -1,9 +1,17 @@
-import { CartContainer, HeaderContainer, LocationContainer } from './styles'
+import {
+  CartContainer,
+  CartNotification,
+  HeaderContainer,
+  LocationContainer,
+} from './styles'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 
 import logo from '../../assets/logo.svg'
+import { useState } from 'react'
 
 export function Header() {
+  const [notifications, setNotifications] = useState(1)
+
   return (
     <HeaderContainer>
       <img src={logo} alt="logo Coffee Delivery" />
@@ -15,6 +23,9 @@ export function Header() {
         </LocationContainer>
         <CartContainer>
           <ShoppingCart size={22} weight="fill" />
+          {notifications >= 1 && (
+            <CartNotification>{notifications}</CartNotification>
+          )}
         </CartContainer>
       </nav>
     </HeaderContainer>

@@ -17,12 +17,15 @@ export const LocationContainer = styled.span`
   border-radius: 0.375rem;
   padding: 8px;
 
-  color: ${(props) => props.theme.purple};
+  color: ${(props) => props.theme['purple-dark']};
   background: ${(props) => props.theme['purple-light']};
 
   //align itens svg and text on center
   svg {
+    margin-right: 4px;
     text-align: center;
+    font-size: 14px;
+    color: ${(props) => props.theme.purple};
     vertical-align: middle;
   }
 `
@@ -38,5 +41,24 @@ export const CartContainer = styled.span`
   svg {
     text-align: center;
     vertical-align: middle;
+  }
+`
+export const CartNotification = styled.span`
+  position: absolute;
+  z-index: 1;
+  top: 60px;
+  right: 55px;
+  width: 20px;
+  height: 20px;
+  line-height: 22px;
+  font-size: 14px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: ${(props) => props.theme.yellow};
+  color: ${(props) => props.theme.white};
+
+  @media (min-width: 75.75rem) {
+    top: 60px;
+    right: 150px;
   }
 `
