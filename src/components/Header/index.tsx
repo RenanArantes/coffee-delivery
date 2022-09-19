@@ -10,7 +10,7 @@ import logo from '../../assets/logo.svg'
 import { useState } from 'react'
 
 export function Header() {
-  const [notifications, setNotifications] = useState(1)
+  const [notifications, setNotifications] = useState(15)
 
   return (
     <HeaderContainer>
