@@ -42,7 +42,7 @@ export const CartNotification = styled.span`
   position: absolute;
   z-index: 1;
   top: 60px;
-  right: 55px;
+  right: auto;
   width: 20px;
   height: 20px;
   line-height: 22px;
@@ -51,9 +51,4 @@ export const CartNotification = styled.span`
   text-align: center;
   background-color: ${(props) => props.theme.yellow};
   color: ${(props) => props.theme.white};
-
-  @media (min-width: 75.75rem) {
-    top: 60px;
-    right: 150px;
-  }
 `
