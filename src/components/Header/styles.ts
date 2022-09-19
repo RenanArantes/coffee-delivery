@@ -5,12 +5,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  margin: 2rem 10rem;
   height: 6.5rem;
-
-  @media (max-width: 75.75rem) {
-    margin: 2rem 4rem;
-  }
 `
 
 export const LocationContainer = styled.span`

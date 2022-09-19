@@ -15,7 +15,6 @@ import coffeeDelivery from '../../assets/coffee_delivery.png'
 export function Home() {
   return (
     <HomeContainer>
-      <Header />
       <div>
         <img
           src={background}
