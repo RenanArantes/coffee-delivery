@@ -6,7 +6,7 @@ export const LayoutContainer = styled.div`
   align-items: center;
 
   max-width: 1440px;
-  margin: 2rem auto;
+  margin: 2rem 160px;
 `
 export const BackgroundImg = styled.img`
   width: 120%;
