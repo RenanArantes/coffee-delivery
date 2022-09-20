@@ -22,12 +22,36 @@ import {
   DecreaseButton,
   CoffeeCategoryContainer,
 } from './styles'
-import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
+import {
+  ShoppingCart,
+  Timer,
+  Package,
+  Coffee,
+  Minus,
+  Plus,
+} from 'phosphor-react'
 
 import coffeeDelivery from '../../assets/coffee_delivery.png'
 import coffee from '../../assets/coffee.png'
+import { useState } from 'react'
 
 export function Home() {
+  const [quantityCounter, setQuantityCounter] = useState(0)
+
+  function increaseQuantity() {
+    setQuantityCounter(quantityCounter + 1)
+  }
+
+  function decreaseQuantity() {
+    if (quantityCounter >= 1) {
+      setQuantityCounter(quantityCounter - 1)
+    } else {
+      alert(
+        'Você não pode diminuir a quantidade de um produto para menos que zero.',
+      )
+    }
+  }
+
   return (
     <HomeContainer>
       <IntroContainer>
@@ -93,8 +117,13 @@ export function Home() {
                 <Price>9,90</Price>
               </div>
               <CoffeeQuantityContainer>
-                <DecreaseButton type="button">-</DecreaseButton> 1{' '}
-                <IncreaseButton type="button">+</IncreaseButton>
+                <DecreaseButton type="button" onClick={decreaseQuantity}>
+                  <Minus size={14} weight="bold" />
+                </DecreaseButton>
+                {quantityCounter}
+                <IncreaseButton type="button" onClick={increaseQuantity}>
+                  <Plus size={14} weight="bold" />
+                </IncreaseButton>
               </CoffeeQuantityContainer>
               <ShoppingCart size={16} weight="fill" />
             </ValueContainer>

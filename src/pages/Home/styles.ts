@@ -180,9 +180,7 @@ const BaseQuantityButton = styled.button`
   border: 0;
   background: transparent;
 `
-export const DecreaseButton = styled(BaseQuantityButton)`
-  font-size: 28px;
-`
+export const DecreaseButton = styled(BaseQuantityButton)``
 export const IncreaseButton = styled(BaseQuantityButton)`
   font-size: 14px;
 `
