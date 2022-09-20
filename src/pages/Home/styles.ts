@@ -105,6 +105,11 @@ export const CoffeeItem = styled.li`
   width: 256px;
   height: 310px;
 `
+export const CoffeeCategoryContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 export const CoffeeCategory = styled.span`
   background: ${(props) => props.theme['yellow-light']};
   color: ${(props) => props.theme['yellow-dark']};

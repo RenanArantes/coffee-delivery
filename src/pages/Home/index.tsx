@@ -20,6 +20,7 @@ import {
   CoffeeQuantityContainer,
   IncreaseButton,
   DecreaseButton,
+  CoffeeCategoryContainer,
 } from './styles'
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 
@@ -77,11 +78,11 @@ export function Home() {
         <CoffeeList>
           <CoffeeItem>
             <CoffeeImage src={coffee} />
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <CoffeeCategoryContainer>
               <CoffeeCategory>TRADICIONAL</CoffeeCategory>
               <CoffeeCategory>ESPECIAL</CoffeeCategory>
-              <CoffeeCategory>TRADICIONAL</CoffeeCategory>
-            </div>
+              <CoffeeCategory>ESPECIAL</CoffeeCategory>
+            </CoffeeCategoryContainer>
             <CoffeeItemTitle>Expresso Tradicional</CoffeeItemTitle>
             <CoffeeItemSubtitle>
               O tradicional café feito com água quente e gráos moídos
