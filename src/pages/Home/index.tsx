@@ -21,9 +21,11 @@ import {
   IncreaseButton,
   DecreaseButton,
   CoffeeCategoryContainer,
+  ShoppingCartSimpleContainer,
 } from './styles'
 import {
   ShoppingCart,
+  ShoppingCartSimple,
   Timer,
   Package,
   Coffee,
@@ -125,7 +127,9 @@ export function Home() {
                   <Plus size={14} weight="bold" />
                 </IncreaseButton>
               </CoffeeQuantityContainer>
-              <ShoppingCart size={16} weight="fill" />
+              <ShoppingCartSimpleContainer>
+                <ShoppingCartSimple size={22} weight="fill" />
+              </ShoppingCartSimpleContainer>
             </ValueContainer>
           </CoffeeItem>
         </CoffeeList>

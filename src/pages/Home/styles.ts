@@ -184,3 +184,14 @@ export const DecreaseButton = styled(BaseQuantityButton)``
 export const IncreaseButton = styled(BaseQuantityButton)`
   font-size: 14px;
 `
+export const ShoppingCartSimpleContainer = styled.span`
+  background: ${(props) => props.theme['purple-dark']};
+  border-radius: 6px;
+  padding: 8px;
+  width: 38px;
+  height: 38px;
+
+  svg {
+    color: ${(props) => props.theme['base-button']};
+  }
+`
