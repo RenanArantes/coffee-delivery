@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const HomeContainer = styled.main`
   padding: 0 20px;
+  height: 544px;
 `
 
 export const IntroContainer = styled.div`
@@ -70,14 +71,13 @@ export const IconContainer = styled.span`
     (props.typeof === 'coffee' && props.theme.purple) ||
     (props.typeof === 'cart' && props.theme['yellow-dark'])};
 `
+export const CoffeListContainer = styled.div`
+  width: 1440px;
+  height: 100%;
 
-export const CoffeeListContainer = styled.div`
-  width: 256px;
-  height: 310px;
-  border-radius: 6px 36px;
-
-  background: ${(props) => props.theme['base-card']};
+  margin-top: 50px;
 `
+
 export const CoffeeTitle = styled.h1`
   font-size: 32px;
   font-family: 'Baloo 2', cursive;
@@ -89,7 +89,23 @@ export const CoffeeTitle = styled.h1`
 
 export const CoffeeList = styled.ul`
   list-style: none;
-  display: absolute;
+  display: flex;
+
+  flex-wrap: wrap;
+`
+
+export const CoffeeItem = styled.li`
+  //position: absolute;
+
+  width: 256px;
+  height: 310px;
+
+  border-radius: 6px 36px;
+
+  margin-right: 32px;
+  margin-bottom: 40px;
+
+  background: ${(props) => props.theme['base-card']};
 `
 
 export const CoffeeImage = styled.img`
@@ -99,12 +115,6 @@ export const CoffeeImage = styled.img`
   margin-top: -20px;
 `
 
-export const CoffeeItem = styled.li`
-  position: absolute;
-
-  width: 256px;
-  height: 310px;
-`
 export const CoffeeCategoryContainer = styled.div`
   display: flex;
   justify-content: center;

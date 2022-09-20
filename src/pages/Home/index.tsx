@@ -7,8 +7,8 @@ import {
   IconsContainer,
   Item,
   IconContainer,
+  CoffeListContainer,
   CoffeeList,
-  CoffeeListContainer,
   CoffeeItem,
   CoffeeCategory,
   CoffeeTitle,
@@ -99,8 +99,8 @@ export function Home() {
           style={{ float: 'right', marginLeft: 'auto' }}
         />
       </IntroContainer>
-      <CoffeeTitle>Nossos cafés</CoffeeTitle>
-      <CoffeeListContainer>
+      <CoffeListContainer>
+        <CoffeeTitle>Nossos cafés</CoffeeTitle>
         <CoffeeList>
           <CoffeeItem>
             <CoffeeImage src={coffee} />
@@ -133,7 +133,7 @@ export function Home() {
             </ValueContainer>
           </CoffeeItem>
         </CoffeeList>
-      </CoffeeListContainer>
+      </CoffeListContainer>
     </HomeContainer>
   )
 }
