@@ -9,18 +9,25 @@ import {
   Trash,
 } from 'phosphor-react'
 import coffee from '../../assets/coffee.png'
-import { CheckoutContainer } from './styles'
+import {
+  AddressContainer,
+  CheckoutContainer,
+  PaymentContainer,
+  SubTitle,
+  Title,
+  TotalCoffeeContainer,
+} from './styles'
 
 export function Checkout() {
   return (
     <CheckoutContainer>
       <div>
-        <h1>Complete seu pedido</h1>
-        <div>
+        <Title>Complete seu pedido</Title>
+        <AddressContainer>
           <form>
             <span>
               <MapPinLine />
-              <h2>Endereço da Entrega</h2>
+              <SubTitle>Endereço da Entrega</SubTitle>
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </span>
             <span>
@@ -52,32 +59,34 @@ export function Checkout() {
               </span>
             </div>
           </form>
-        </div>
-        <div>
-          <span>
-            <CurrencyDollar />
-            <h1>Pagamento</h1>
-            <p>
-              O pagamento é feito na entrega. Escolha a forma que deseja pagar
-            </p>
-          </span>
-        </div>
-        <div>
-          <span>
-            <CreditCard /> CARTÃO DE CRÉDITO
-          </span>
-          <span>
-            <Bank /> CARTÃO DE DÉBITO
-          </span>
-          <span>
-            <Money /> DINHEIRO
-          </span>
-        </div>
+        </AddressContainer>
+        <PaymentContainer>
+          <div>
+            <span>
+              <CurrencyDollar />
+              <SubTitle>Pagamento</SubTitle>
+              <p>
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              </p>
+            </span>
+          </div>
+          <div>
+            <span>
+              <CreditCard /> CARTÃO DE CRÉDITO
+            </span>
+            <span>
+              <Bank /> CARTÃO DE DÉBITO
+            </span>
+            <span>
+              <Money /> DINHEIRO
+            </span>
+          </div>
+        </PaymentContainer>
       </div>
 
       <div>
-        <h1>Cafés selecionados</h1>
-        <div>
+        <Title>Cafés selecionados</Title>
+        <TotalCoffeeContainer>
           <img src={coffee} alt="coffee_name" />
           <div>
             <span>Expresso Tradicional</span>
@@ -109,7 +118,7 @@ export function Checkout() {
               <button type="submit">Confirmar Pedido</button>
             </div>
           </div>
-        </div>
+        </TotalCoffeeContainer>
       </div>
     </CheckoutContainer>
   )
