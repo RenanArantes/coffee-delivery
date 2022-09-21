@@ -22,7 +22,6 @@ import {
   MediumInput,
   LargeInput,
   SmallInput,
-  Input,
   OptionalPlaceholderContainer,
 } from './styles'
 
