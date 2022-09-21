@@ -13,9 +13,17 @@ import {
   AddressContainer,
   CheckoutContainer,
   PaymentContainer,
-  SubTitle,
-  Title,
   TotalCoffeeContainer,
+  Title,
+  InfoAddress,
+  SubTitle,
+  InfoText,
+  InfoPaymentType,
+  MediumInput,
+  LargeInput,
+  SmallInput,
+  Input,
+  OptionalPlaceholderContainer,
 } from './styles'
 
 export function Checkout() {
@@ -24,52 +32,55 @@ export function Checkout() {
       <div>
         <Title>Complete seu pedido</Title>
         <AddressContainer>
-          <form>
+          <InfoAddress>
+            <MapPinLine size={22} />
             <span>
-              <MapPinLine />
               <SubTitle>Endereço da Entrega</SubTitle>
-              <p>Informe o endereço onde deseja receber seu pedido</p>
+              <InfoText>
+                Informe o endereço onde deseja receber seu pedido
+              </InfoText>
             </span>
-            <span>
-              <input placeholder="CEP" />
-            </span>
+          </InfoAddress>
+          <MediumInput style={{ marginBottom: '16px' }}>
+            <input placeholder="CEP" />
+          </MediumInput>
 
-            <div>
-              <span>
-                <input placeholder="Rua" />
-              </span>
-            </div>
-            <div>
-              <span>
-                <input placeholder="Número" />
-              </span>
-              <span>
+          <LargeInput style={{ marginBottom: '16px' }}>
+            <input placeholder="Rua" />
+          </LargeInput>
+
+          <div style={{ display: 'flex', marginBottom: '16px' }}>
+            <MediumInput style={{ marginRight: '12px' }}>
+              <input placeholder="Número" />
+            </MediumInput>
+            <LargeInput>
+              <OptionalPlaceholderContainer data-required="Opcional">
                 <input placeholder="Complemento" />
-              </span>
-            </div>
-            <div>
-              <span>
-                <input placeholder="Bairro" />
-              </span>
-              <span>
-                <input placeholder="Cidade" />
-              </span>
-              <span>
-                <input placeholder="UF" />
-              </span>
-            </div>
-          </form>
+              </OptionalPlaceholderContainer>
+            </LargeInput>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <MediumInput style={{ marginRight: '12px' }}>
+              <input placeholder="Bairro" />
+            </MediumInput>
+            <LargeInput style={{ marginRight: '12px' }} isOptional>
+              <input placeholder="Cidade" />
+            </LargeInput>
+            <SmallInput>
+              <input placeholder="UF" />
+            </SmallInput>
+          </div>
         </AddressContainer>
         <PaymentContainer>
-          <div>
+          <InfoPaymentType>
+            <CurrencyDollar />
             <span>
-              <CurrencyDollar />
               <SubTitle>Pagamento</SubTitle>
               <p>
                 O pagamento é feito na entrega. Escolha a forma que deseja pagar
               </p>
             </span>
-          </div>
+          </InfoPaymentType>
           <div>
             <span>
               <CreditCard /> CARTÃO DE CRÉDITO
