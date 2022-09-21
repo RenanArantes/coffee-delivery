@@ -128,3 +128,29 @@ export const OptionalPlaceholderContainer = styled.div`
     color: #ccc;
   }
 `
+export const SelectPaymentLabel = styled.label`
+  display: flex;
+
+  width: 179px;
+  height: 51px;
+  padding: 16px;
+  margin-right: 12px;
+
+  align-items: center;
+  align-content: center;
+
+  border-radius: 6px;
+  background: ${(props) => props.theme['base-button']};
+
+  font-size: 12px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  svg {
+    margin-right: 12px;
+
+    color: ${(props) => props.theme.purple};
+  }
+`

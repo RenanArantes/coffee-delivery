@@ -23,6 +23,7 @@ import {
   LargeInput,
   SmallInput,
   OptionalPlaceholderContainer,
+  SelectPaymentLabel,
 } from './styles'
 
 export function Checkout() {
@@ -80,16 +81,16 @@ export function Checkout() {
               </p>
             </span>
           </InfoPaymentType>
-          <div>
-            <span>
-              <CreditCard /> CARTÃO DE CRÉDITO
-            </span>
-            <span>
-              <Bank /> CARTÃO DE DÉBITO
-            </span>
-            <span>
-              <Money /> DINHEIRO
-            </span>
+          <div style={{ display: 'flex' }}>
+            <SelectPaymentLabel>
+              <CreditCard size={16} /> CARTÃO DE CRÉDITO
+            </SelectPaymentLabel>
+            <SelectPaymentLabel>
+              <Bank size={16} /> CARTÃO DE DÉBITO
+            </SelectPaymentLabel>
+            <SelectPaymentLabel>
+              <Money size={16} /> DINHEIRO
+            </SelectPaymentLabel>
           </div>
         </PaymentContainer>
       </div>
