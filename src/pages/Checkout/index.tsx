@@ -24,6 +24,18 @@ import {
   SmallInput,
   OptionalPlaceholderContainer,
   SelectPaymentLabel,
+  CoffeeItem,
+  CoffeeListContainer,
+  CoffeeInfo,
+  CoffeeInfoButtonsContainer,
+  ButtonSpanQuantity,
+  ButtonSpanRemove,
+  Button,
+  Divisor,
+  PricesContainer,
+  ValueSpan,
+  ValueSpanTotal,
+  ButtonTotal,
 } from './styles'
 
 export function Checkout() {
@@ -98,37 +110,135 @@ export function Checkout() {
       <div>
         <Title>Cafés selecionados</Title>
         <TotalCoffeeContainer>
-          <img src={coffee} alt="coffee_name" />
-          <div>
-            <span>Expresso Tradicional</span>
-            <span>
-              <Minus />
-              1
-              <Plus />
-            </span>
-            <span>
-              <Trash /> Remover
-            </span>
-          </div>
-          <div>
-            <span>
+          <CoffeeItem>
+            <CoffeeListContainer>
+              <img src={coffee} alt="coffee_name" />
+              <CoffeeInfo>
+                <p>Expresso Tradicional</p>
+                <CoffeeInfoButtonsContainer>
+                  <ButtonSpanQuantity>
+                    <Button type="button">
+                      <Minus size={14} color={'#8047F8'} />
+                    </Button>
+                    <span style={{ margin: '0px 9px' }}>1</span>
+                    <Button type="button">
+                      <Plus size={14} color={'#8047F8'} />
+                    </Button>
+                  </ButtonSpanQuantity>
+                  <ButtonSpanRemove>
+                    <Button type="button">
+                      <Trash size={14} color={'#8047F8'} /> Remover
+                    </Button>
+                  </ButtonSpanRemove>
+                </CoffeeInfoButtonsContainer>
+              </CoffeeInfo>
+            </CoffeeListContainer>
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
+            </div>
+          </CoffeeItem>
+          <Divisor />
+          <CoffeeItem>
+            <CoffeeListContainer>
+              <img src={coffee} alt="coffee_name" />
+              <CoffeeInfo>
+                <p>Expresso Tradicional</p>
+                <CoffeeInfoButtonsContainer>
+                  <ButtonSpanQuantity>
+                    <Button type="button">
+                      <Minus size={14} color={'#8047F8'} />
+                    </Button>
+                    <span style={{ margin: '0px 9px' }}>1</span>
+                    <Button type="button">
+                      <Plus size={14} color={'#8047F8'} />
+                    </Button>
+                  </ButtonSpanQuantity>
+                  <ButtonSpanRemove>
+                    <Button type="button">
+                      <Trash size={14} color={'#8047F8'} /> Remover
+                    </Button>
+                  </ButtonSpanRemove>
+                </CoffeeInfoButtonsContainer>
+              </CoffeeInfo>
+            </CoffeeListContainer>
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
+            </div>
+          </CoffeeItem>
+          <Divisor />
+          <CoffeeItem>
+            <CoffeeListContainer>
+              <img src={coffee} alt="coffee_name" />
+              <CoffeeInfo>
+                <p>Expresso Tradicional</p>
+                <CoffeeInfoButtonsContainer>
+                  <ButtonSpanQuantity>
+                    <Button type="button">
+                      <Minus size={14} color={'#8047F8'} />
+                    </Button>
+                    <span style={{ margin: '0px 9px' }}>1</span>
+                    <Button type="button">
+                      <Plus size={14} color={'#8047F8'} />
+                    </Button>
+                  </ButtonSpanQuantity>
+                  <ButtonSpanRemove>
+                    <Button type="button">
+                      <Trash size={14} color={'#8047F8'} /> Remover
+                    </Button>
+                  </ButtonSpanRemove>
+                </CoffeeInfoButtonsContainer>
+              </CoffeeInfo>
+            </CoffeeListContainer>
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
+            </div>
+          </CoffeeItem>
+          <Divisor />
+          <CoffeeItem>
+            <CoffeeListContainer>
+              <img src={coffee} alt="coffee_name" />
+              <CoffeeInfo>
+                <p>Expresso Tradicional</p>
+                <CoffeeInfoButtonsContainer>
+                  <ButtonSpanQuantity>
+                    <Button type="button">
+                      <Minus size={14} color={'#8047F8'} />
+                    </Button>
+                    <span style={{ margin: '0px 9px' }}>1</span>
+                    <Button type="button">
+                      <Plus size={14} color={'#8047F8'} />
+                    </Button>
+                  </ButtonSpanQuantity>
+                  <ButtonSpanRemove>
+                    <Button type="button">
+                      <Trash size={14} color={'#8047F8'} /> Remover
+                    </Button>
+                  </ButtonSpanRemove>
+                </CoffeeInfoButtonsContainer>
+              </CoffeeInfo>
+            </CoffeeListContainer>
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
+            </div>
+          </CoffeeItem>
+          <Divisor />
+          <PricesContainer>
+            <ValueSpan>
               <span>Total de itens</span>
               <span>R$ 9,90</span>
-            </span>
-            <span>
+            </ValueSpan>
+            <ValueSpan>
               <span>Entrega</span>
               <span>R$ 2,00</span>
-            </span>
-            <span>
-              <strong>
-                <span>Total</span>
-                <span>R$ 11,90</span>
-              </strong>
-            </span>
-            <div>
-              <button type="submit">Confirmar Pedido</button>
-            </div>
-          </div>
+            </ValueSpan>
+            <ValueSpanTotal>
+              <span>Total</span>
+              <span>R$ 11,90</span>
+            </ValueSpanTotal>
+            <ButtonTotal>
+              <Button type="submit">CONFIRMAR PEDIDO</Button>
+            </ButtonTotal>
+          </PricesContainer>
         </TotalCoffeeContainer>
       </div>
     </CheckoutContainer>
