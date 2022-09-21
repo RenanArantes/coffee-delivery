@@ -8,10 +8,24 @@ export const HomeContainer = styled.main`
 export const IntroContainer = styled.div`
   display: flex;
   margin-top: 6.5rem;
-  //columns: 2;
 `
 export const ItensContainer = styled.div`
   float: 'left';
+`
+
+export const CoffeeIntroImg = styled.img`
+  margin-left: auto;
+  z-index: 1;
+`
+
+export const BackgroundImg = styled.img`
+  width: 1830px;
+  height: 34rem;
+  position: absolute;
+  margin-top: -55px;
+  margin-left: -200px;
+
+  filter: blur(80px);
 `
 
 export const Title = styled.h1`

@@ -2,6 +2,8 @@ import {
   HomeContainer,
   IntroContainer,
   ItensContainer,
+  CoffeeIntroImg,
+  BackgroundImg,
   Title,
   Subtitle,
   IconsContainer,
@@ -35,6 +37,7 @@ import {
 
 import coffeeDelivery from '../../assets/coffee_delivery.png'
 import coffee from '../../assets/coffee.png'
+import background from '../../assets/background.png'
 import { useState } from 'react'
 
 export function Home() {
@@ -93,11 +96,9 @@ export function Home() {
             </Item>
           </IconsContainer>
         </ItensContainer>
-        <img
-          src={coffeeDelivery}
-          alt="Coffee image"
-          style={{ float: 'right', marginLeft: 'auto' }}
-        />
+        <CoffeeIntroImg src={coffeeDelivery} alt="Coffee image" />
+
+        <BackgroundImg src={background} />
       </IntroContainer>
       <CoffeListContainer>
         <CoffeeTitle>Nossos cafés</CoffeeTitle>
