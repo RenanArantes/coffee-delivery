@@ -86,6 +86,7 @@ export const BaseInputLabel = styled.span<LargeInputProps>`
 
     outline-style: hidden;
 
+    color: ${(props) => props.theme['base-text']};
     &::placeholder {
       color: ${(props) => props.theme['base-label']};
     }
