@@ -164,6 +164,12 @@ export const SelectPaymentLabel = styled.label`
 
     color: ${(props) => props.theme.purple};
   }
+
+  transition: 0.3s;
+
+  &:hover {
+    background: ${(props) => props.theme['base-hover']};
+  }
 `
 
 export const CoffeeItem = styled.div`
@@ -249,7 +255,14 @@ export const ButtonTotal = styled.button`
 
   border: solid 1px ${(props) => props.theme.yellow};
   background: ${(props) => props.theme.yellow};
-  button {
+
+  transition: 0.3s;
+
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-dark']};
+  }
+
+  span {
     font-size: 14px;
     font-weight: 700;
     line-height: 160%;

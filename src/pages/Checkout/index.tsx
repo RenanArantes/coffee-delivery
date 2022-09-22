@@ -274,8 +274,8 @@ export function Checkout() {
               <span>Total</span>
               <span>R$ 11,90</span>
             </ValueSpanTotal>
-            <ButtonTotal>
-              <Button type="submit">CONFIRMAR PEDIDO</Button>
+            <ButtonTotal type="submit">
+              <span>CONFIRMAR PEDIDO</span>
             </ButtonTotal>
           </PricesContainer>
         </TotalCoffeeContainer>
