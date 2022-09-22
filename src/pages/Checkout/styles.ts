@@ -129,6 +129,15 @@ export const OptionalPlaceholderContainer = styled.div`
     color: #ccc;
   }
 `
+export const PaymentInput = styled.input`
+  display: none;
+
+  :checked + label {
+    border: solid 2px ${(props) => props.theme.purple};
+    background: ${(props) => props.theme['purple-light']};
+  }
+`
+
 export const SelectPaymentLabel = styled.label`
   display: flex;
 
@@ -142,6 +151,7 @@ export const SelectPaymentLabel = styled.label`
 
   border-radius: 6px;
   background: ${(props) => props.theme['base-button']};
+  border: solid 1px ${(props) => props.theme['base-button']};
 
   font-size: 12px;
 
@@ -155,6 +165,7 @@ export const SelectPaymentLabel = styled.label`
     color: ${(props) => props.theme.purple};
   }
 `
+
 export const CoffeeItem = styled.div`
   display: flex;
   justify-content: space-between;

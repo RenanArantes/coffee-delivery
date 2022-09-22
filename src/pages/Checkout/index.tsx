@@ -8,6 +8,7 @@ import {
   Plus,
   Trash,
 } from 'phosphor-react'
+import { ChangeEvent, useState } from 'react'
 import coffee from '../../assets/coffee.png'
 import {
   AddressContainer,
@@ -36,12 +37,24 @@ import {
   ValueSpan,
   ValueSpanTotal,
   ButtonTotal,
+  PaymentInput,
 } from './styles'
 
 export function Checkout() {
+  const [paymentType, setPaymentType] = useState('')
+
+  function handleSelected(e: ChangeEvent<HTMLInputElement>) {
+    console.log(e.target.value)
+
+    setPaymentType(() => {
+      return e.target.value
+    })
+  }
+
   return (
     <CheckoutContainer>
       <div>
+        <Title>{String(paymentType)}</Title>
         <Title>Complete seu pedido</Title>
         <AddressContainer>
           <InfoAddress>
@@ -94,14 +107,40 @@ export function Checkout() {
             </span>
           </InfoPaymentType>
           <div style={{ display: 'flex' }}>
-            <SelectPaymentLabel>
-              <CreditCard size={16} /> CARTÃO DE CRÉDITO
+            <PaymentInput
+              type="radio"
+              id="credit_card"
+              name="payment_type"
+              value="credit_card"
+              onChange={handleSelected}
+            />
+            <SelectPaymentLabel htmlFor="credit_card">
+              <CreditCard size={16} />
+              CARTÃO DE CRÉDITO
             </SelectPaymentLabel>
-            <SelectPaymentLabel>
-              <Bank size={16} /> CARTÃO DE DÉBITO
+
+            <PaymentInput
+              type="radio"
+              id="debit_card"
+              name="payment_type"
+              value="debit_card"
+              onChange={handleSelected}
+            />
+            <SelectPaymentLabel htmlFor="debit_card">
+              <Bank size={16} />
+              CARTÃO DE DÉBITO
             </SelectPaymentLabel>
-            <SelectPaymentLabel>
-              <Money size={16} /> DINHEIRO
+
+            <PaymentInput
+              type="radio"
+              id="specie"
+              name="payment_type"
+              value="specie"
+              onChange={handleSelected}
+            />
+            <SelectPaymentLabel htmlFor="specie">
+              <Money size={16} />
+              DINHEIRO
             </SelectPaymentLabel>
           </div>
         </PaymentContainer>
