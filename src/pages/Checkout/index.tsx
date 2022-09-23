@@ -8,7 +8,7 @@ import {
   Plus,
   Trash,
 } from 'phosphor-react'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState, MouseEvent } from 'react'
 import coffee from '../../assets/coffee.png'
 import {
   AddressContainer,
@@ -157,11 +157,11 @@ export function Checkout() {
                 <CoffeeInfoButtonsContainer>
                   <ButtonSpanQuantity>
                     <Button type="button">
-                      <Minus size={14} color={'#8047F8'} />
+                      <Minus size={14} />
                     </Button>
                     <span style={{ margin: '0px 9px' }}>1</span>
                     <Button type="button">
-                      <Plus size={14} color={'#8047F8'} />
+                      <Plus size={14} />
                     </Button>
                   </ButtonSpanQuantity>
                   <ButtonSpanRemove>

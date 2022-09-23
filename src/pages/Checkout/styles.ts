@@ -73,20 +73,33 @@ interface LargeInputProps {
 export const BaseInputLabel = styled.span<LargeInputProps>`
   display: inline-block; //faz o span aceitar as dimensoes de tamanho
 
-  padding: 12px;
-  height: 42px;
+  /* padding: 12px;
+  height: 42px; */
 
   background: ${(props) => props.theme['base-input']};
   border: 1px solid ${(props) => props.theme['base-button']};
   border-radius: 4px;
 
+  transition: 0.3s;
+
   input {
+    width: inherit;
+    padding: 12px;
+    height: 42px;
+
     border: none;
+    border-radius: 4px;
     background: transparent;
 
     outline-style: hidden;
 
     color: ${(props) => props.theme['base-text']};
+
+    :focus {
+      outline: 1px solid ${(props) => props.theme['yellow-dark']};
+      border: 1px solid ${(props) => props.theme['yellow-dark']};
+    }
+
     &::placeholder {
       color: ${(props) => props.theme['base-label']};
     }
@@ -105,7 +118,9 @@ export const SmallInput = styled(BaseInputLabel)`
 `
 
 export const MediumInput = styled(BaseInputLabel)`
-  max-width: 200px;
+  input {
+    max-width: 200px;
+  }
 `
 
 export const LargeInput = styled(BaseInputLabel)`
@@ -116,10 +131,11 @@ export const LargeInput = styled(BaseInputLabel)`
     width: 100%;
   }
 `
+
 export const OptionalPlaceholderContainer = styled.div`
   position: relative;
 
-  &::after {
+  &::before {
     content: attr(data-required);
     position: absolute;
     right: 8px;
@@ -210,10 +226,26 @@ const ButtonSpanBase = styled.span`
   background: ${(props) => props.theme['base-button']};
   padding: 9px;
 `
-export const ButtonSpanQuantity = styled(ButtonSpanBase)``
+export const ButtonSpanQuantity = styled(ButtonSpanBase)`
+  svg {
+    color: ${(props) => props.theme.purple};
+
+    transition: 0.3s;
+
+    :hover {
+      color: ${(props) => props.theme['purple-dark']};
+    }
+  }
+`
 
 export const ButtonSpanRemove = styled(ButtonSpanBase)`
   margin-left: 8px;
+
+  transition: 0.3s;
+
+  &:hover {
+    background: ${(props) => props.theme['base-hover']};
+  }
 `
 
 export const Button = styled.button`
@@ -221,6 +253,7 @@ export const Button = styled.button`
   outline: none;
   background: transparent;
 `
+
 export const Divisor = styled.hr`
   margin: 24px 0;
   border: solid 1px ${(props) => props.theme['base-button']};

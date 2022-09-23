@@ -218,4 +218,10 @@ export const ShoppingCartSimpleContainer = styled.span`
   svg {
     color: ${(props) => props.theme['base-button']};
   }
+
+  transition: 0.3s;
+
+  :hover {
+    background: ${(props) => props.theme.purple};
+  }
 `
