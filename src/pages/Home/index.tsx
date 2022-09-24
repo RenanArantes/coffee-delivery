@@ -36,26 +36,16 @@ import {
 } from 'phosphor-react'
 
 import coffeeDelivery from '../../assets/coffee_delivery.png'
-import coffee from '../../assets/coffee.png'
+
 import background from '../../assets/background.png'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../contexts/Cart'
 
 export function Home() {
-  const [quantityCounter, setQuantityCounter] = useState(0)
+  const [quantity, setQuantity] = useState(0)
 
-  function increaseQuantity() {
-    setQuantityCounter(quantityCounter + 1)
-  }
-
-  function decreaseQuantity() {
-    if (quantityCounter >= 1) {
-      setQuantityCounter(quantityCounter - 1)
-    } else {
-      alert(
-        'Você não pode diminuir a quantidade de um produto para menos que zero.',
-      )
-    }
-  }
+  const { coffees, increaseCoffeeQuantity, decreaseCoffeeQuantity } =
+    useContext(CartContext)
 
   return (
     <HomeContainer>
@@ -103,36 +93,45 @@ export function Home() {
       <CoffeListContainer>
         <CoffeeTitle>Nossos cafés</CoffeeTitle>
         <CoffeeList>
-          <CoffeeItem>
-            <CoffeeImage src={coffee} />
-            <CoffeeCategoryContainer>
-              <CoffeeCategory>TRADICIONAL</CoffeeCategory>
-              <CoffeeCategory>ESPECIAL</CoffeeCategory>
-              <CoffeeCategory>ESPECIAL</CoffeeCategory>
-            </CoffeeCategoryContainer>
-            <CoffeeItemTitle>Expresso Tradicional</CoffeeItemTitle>
-            <CoffeeItemSubtitle>
-              O tradicional café feito com água quente e gráos moídos
-            </CoffeeItemSubtitle>
-            <ValueContainer>
-              <div>
-                <span>R$ </span>
-                <Price>9,90</Price>
-              </div>
-              <CoffeeQuantityContainer>
-                <DecreaseButton type="button" onClick={decreaseQuantity}>
-                  <Minus size={14} weight="bold" />
-                </DecreaseButton>
-                {quantityCounter}
-                <IncreaseButton type="button" onClick={increaseQuantity}>
-                  <Plus size={14} weight="bold" />
-                </IncreaseButton>
-              </CoffeeQuantityContainer>
-              <ShoppingCartSimpleContainer>
-                <ShoppingCartSimple size={22} weight="fill" />
-              </ShoppingCartSimpleContainer>
-            </ValueContainer>
-          </CoffeeItem>
+          {coffees &&
+            coffees.map((coffee) => {
+              return (
+                <CoffeeItem key={coffee.name}>
+                  <CoffeeImage src={coffee.url} />
+                  <CoffeeCategoryContainer>
+                    {coffee.types.map((type) => {
+                      return <CoffeeCategory key={type}>{type}</CoffeeCategory>
+                    })}
+                  </CoffeeCategoryContainer>
+                  <CoffeeItemTitle>{coffee.name}</CoffeeItemTitle>
+                  <CoffeeItemSubtitle>{coffee.description}</CoffeeItemSubtitle>
+                  <ValueContainer>
+                    <div>
+                      <span>R$ </span>
+                      <Price>{coffee.price}0</Price>
+                    </div>
+                    <CoffeeQuantityContainer>
+                      <DecreaseButton
+                        type="button"
+                        onClick={() => decreaseCoffeeQuantity(coffee.name)}
+                      >
+                        <Minus size={14} weight="bold" />
+                      </DecreaseButton>
+                      {coffee.quantity}
+                      <IncreaseButton
+                        type="button"
+                        onClick={() => increaseCoffeeQuantity(coffee.name)}
+                      >
+                        <Plus size={14} weight="bold" />
+                      </IncreaseButton>
+                    </CoffeeQuantityContainer>
+                    <ShoppingCartSimpleContainer>
+                      <ShoppingCartSimple size={22} weight="fill" />
+                    </ShoppingCartSimpleContainer>
+                  </ValueContainer>
+                </CoffeeItem>
+              )
+            })}
         </CoffeeList>
       </CoffeListContainer>
     </HomeContainer>

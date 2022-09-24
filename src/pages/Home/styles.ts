@@ -86,7 +86,7 @@ export const IconContainer = styled.span`
     (props.typeof === 'cart' && props.theme['yellow-dark'])};
 `
 export const CoffeListContainer = styled.div`
-  width: 1440px;
+  max-width: 1360px;
   height: 100%;
 
   margin-top: 50px;

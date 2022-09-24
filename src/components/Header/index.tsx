@@ -7,10 +7,11 @@ import {
 import { MapPin, ShoppingCart } from 'phosphor-react'
 
 import logo from '../../assets/logo.svg'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../contexts/Cart'
 
 export function Header() {
-  const [notifications, setNotifications] = useState(15)
+  const { cartQuantity } = useContext(CartContext)
 
   return (
     <HeaderContainer>
@@ -23,8 +24,8 @@ export function Header() {
         </LocationContainer>
         <CartContainer>
           <ShoppingCart size={22} weight="fill" />
-          {notifications >= 1 && (
-            <CartNotification>{notifications}</CartNotification>
+          {cartQuantity >= 1 && (
+            <CartNotification>{cartQuantity}</CartNotification>
           )}
         </CartContainer>
       </nav>

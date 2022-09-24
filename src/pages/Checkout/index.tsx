@@ -9,7 +9,7 @@ import {
   Trash,
 } from 'phosphor-react'
 import { ChangeEvent, useState, MouseEvent } from 'react'
-import coffee from '../../assets/coffee.png'
+import expressoTradicional from '../../assets/expresso_tradicional.png'
 import {
   AddressContainer,
   CheckoutContainer,
@@ -151,7 +151,7 @@ export function Checkout() {
         <TotalCoffeeContainer>
           <CoffeeItem>
             <CoffeeListContainer>
-              <img src={coffee} alt="coffee_name" />
+              <img src={expressoTradicional} alt="coffee_name" />
               <CoffeeInfo>
                 <p>Expresso Tradicional</p>
                 <CoffeeInfoButtonsContainer>
