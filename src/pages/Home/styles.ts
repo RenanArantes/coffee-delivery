@@ -19,7 +19,7 @@ export const CoffeeIntroImg = styled.img`
 `
 
 export const BackgroundImg = styled.img`
-  width: 1830px;
+  width: 150%;
   height: 34rem;
   position: absolute;
   margin-top: -55px;
