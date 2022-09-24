@@ -286,6 +286,7 @@ export const ValueSpanTotal = styled(ValueSpan)`
 export const ButtonTotal = styled.button`
   border-radius: 6px;
   height: 46px;
+  width: 100%;
 
   border: solid 1px ${(props) => props.theme.yellow};
   background: ${(props) => props.theme.yellow};

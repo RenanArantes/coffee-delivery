@@ -179,6 +179,24 @@ export const ValueContainer = styled.div`
   span {
     font-size: 14px;
   }
+
+  a {
+    background: ${(props) => props.theme['purple-dark']};
+    border-radius: 6px;
+    padding: 8px;
+    width: 38px;
+    height: 38px;
+
+    svg {
+      color: ${(props) => props.theme['base-button']};
+    }
+
+    transition: 0.3s;
+
+    :hover {
+      background: ${(props) => props.theme.purple};
+    }
+  }
 `
 export const Price = styled.label`
   font-size: 24px;

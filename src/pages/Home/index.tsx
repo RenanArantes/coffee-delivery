@@ -40,6 +40,7 @@ import coffeeDelivery from '../../assets/coffee_delivery.png'
 import background from '../../assets/background.png'
 import { useContext, useState } from 'react'
 import { CartContext } from '../../contexts/Cart'
+import { Link } from 'react-router-dom'
 
 export function Home() {
   const [quantity, setQuantity] = useState(0)
@@ -125,9 +126,10 @@ export function Home() {
                         <Plus size={14} weight="bold" />
                       </IncreaseButton>
                     </CoffeeQuantityContainer>
-                    <ShoppingCartSimpleContainer>
+
+                    <Link to="/checkout">
                       <ShoppingCartSimple size={22} weight="fill" />
-                    </ShoppingCartSimpleContainer>
+                    </Link>
                   </ValueContainer>
                 </CoffeeItem>
               )

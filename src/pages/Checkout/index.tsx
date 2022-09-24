@@ -9,6 +9,7 @@ import {
   Trash,
 } from 'phosphor-react'
 import { ChangeEvent, useState, MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import expressoTradicional from '../../assets/expresso_tradicional.png'
 import {
   AddressContainer,
@@ -151,7 +152,10 @@ export function Checkout() {
         <TotalCoffeeContainer>
           <CoffeeItem>
             <CoffeeListContainer>
-              <img src={expressoTradicional} alt="coffee_name" />
+              <img
+                src={'https://www.github.com/RenanArantes.png'}
+                alt="coffee_name"
+              />
               <CoffeeInfo>
                 <p>Expresso Tradicional</p>
                 <CoffeeInfoButtonsContainer>
@@ -179,7 +183,10 @@ export function Checkout() {
           <Divisor />
           <CoffeeItem>
             <CoffeeListContainer>
-              <img src={coffee} alt="coffee_name" />
+              <img
+                src={'https://www.github.com/RenanArantes.png'}
+                alt="coffee_name"
+              />
               <CoffeeInfo>
                 <p>Expresso Tradicional</p>
                 <CoffeeInfoButtonsContainer>
@@ -207,7 +214,10 @@ export function Checkout() {
           <Divisor />
           <CoffeeItem>
             <CoffeeListContainer>
-              <img src={coffee} alt="coffee_name" />
+              <img
+                src={'https://www.github.com/RenanArantes.png'}
+                alt="coffee_name"
+              />
               <CoffeeInfo>
                 <p>Expresso Tradicional</p>
                 <CoffeeInfoButtonsContainer>
@@ -235,7 +245,10 @@ export function Checkout() {
           <Divisor />
           <CoffeeItem>
             <CoffeeListContainer>
-              <img src={coffee} alt="coffee_name" />
+              <img
+                src={'https://www.github.com/RenanArantes.png'}
+                alt="coffee_name"
+              />
               <CoffeeInfo>
                 <p>Expresso Tradicional</p>
                 <CoffeeInfoButtonsContainer>
@@ -274,9 +287,11 @@ export function Checkout() {
               <span>Total</span>
               <span>R$ 11,90</span>
             </ValueSpanTotal>
-            <ButtonTotal type="submit">
-              <span>CONFIRMAR PEDIDO</span>
-            </ButtonTotal>
+            <Link to="/success">
+              <ButtonTotal type="submit">
+                <span>CONFIRMAR PEDIDO</span>
+              </ButtonTotal>
+            </Link>
           </PricesContainer>
         </TotalCoffeeContainer>
       </div>
