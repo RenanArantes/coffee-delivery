@@ -147,7 +147,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       }
     })
 
-    const updatedCoffeesOnCart = coffeesOnCart
+    // const updatedCoffeesOnCart = coffeesOnCart
 
     console.log('coffees to cart')
     console.log(coffeesOnCart)
@@ -170,6 +170,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         if (coffee.quantity >= 1) {
           coffee.quantity -= 1
 
+          setCartQuantity((state) => {
+            return (state -= 1)
+          })
           return coffee
         }
       }
@@ -177,11 +180,27 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return coffee
     })
 
-    setCart({
-      cartQuantity: cart.cartQuantity - 1,
-      coffeesOnCart: updatedCoffees,
-    })
     setCoffees(updatedCoffees)
+
+    const findedCoffee = coffeesOnCart.find(
+      (coffee) => coffee.name === coffeeId,
+    )
+
+    if (findedCoffee) {
+      const indexFindedCoffee = coffeesOnCart.indexOf(findedCoffee)
+      console.log(indexFindedCoffee)
+
+      if (coffeesOnCart.includes(findedCoffee) && findedCoffee.quantity >= 0) {
+        console.log('inclui')
+
+        const updatedCoffeesOnCart = coffeesOnCart.filter(
+          (coffee) => coffee !== findedCoffee,
+        )
+
+        console.log(updatedCoffeesOnCart)
+        setCoffeesOnCart(updatedCoffeesOnCart)
+      }
+    }
   }
 
   return (
