@@ -25,8 +25,7 @@ export const PaymentContainer = styled(ContainerBase)`
 `
 
 export const TotalCoffeeContainer = styled(ContainerBase)`
-  max-width: 448px;
-  min-height: 498px;
+  width: 448px;
 
   border-radius: 6px 36px;
 `
@@ -259,7 +258,7 @@ export const Divisor = styled.hr`
   border: solid 1px ${(props) => props.theme['base-button']};
 `
 export const PricesContainer = styled.div`
-  display: grid;
+  display: block;
 `
 export const ValueSpan = styled.span`
   display: flex;

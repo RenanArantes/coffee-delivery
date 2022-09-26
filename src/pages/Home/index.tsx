@@ -43,9 +43,7 @@ import { CartContext } from '../../contexts/Cart'
 import { Link } from 'react-router-dom'
 
 export function Home() {
-  const [quantity, setQuantity] = useState(0)
-
-  const { coffees, increaseCoffeeQuantity, decreaseCoffeeQuantity } =
+  const { coffees, cart, increaseCoffeeQuantity, decreaseCoffeeQuantity } =
     useContext(CartContext)
 
   return (

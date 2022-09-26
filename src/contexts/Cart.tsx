@@ -9,7 +9,7 @@ import expressoGelado from '../assets/expresso_gelado.png'
 import latte from '../assets/latte.png'
 import macchiato from '../assets/macchiato.png'
 
-interface CoffeeType {
+interface CoffeeProps {
   name: string
   description: string
   types: string[]
@@ -18,23 +18,28 @@ interface CoffeeType {
   quantity: number
 }
 
-interface CartContextType {
+interface CartProps {
+  coffeesOnCart: CoffeeProps[]
   cartQuantity: number
-  coffees: CoffeeType[]
+}
+
+interface CartContextProps {
+  cart: CartProps
+  coffees: CoffeeProps[]
+  coffeesOnCart: CoffeeProps[]
+  cartQuantity: number
   increaseCoffeeQuantity: (coffeeId: string) => void
   decreaseCoffeeQuantity: (coffeeId: string) => void
 }
 
-export const CartContext = createContext({} as CartContextType)
+export const CartContext = createContext({} as CartContextProps)
 
 interface CartContextProviderProps {
   children: ReactNode
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartQuantity, setCartQuantity] = useState(0)
-  const [coffeeQuantity, setCoffeeQuantity] = useState(0)
-  const [coffees, setCoffees] = useState<CoffeeType[]>([
+  const [coffees, setCoffees] = useState<CoffeeProps[]>([
     {
       name: 'Expresso Tradicional',
       description: 'O tradicional café feito com água quente e grãos moídos',
@@ -102,35 +107,68 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       quantity: 0,
     },
   ])
+  const [coffeesOnCart, setCoffeesOnCart] = useState<CoffeeProps[]>([])
+  const [cartQuantity, setCartQuantity] = useState(0)
+
+  const [cart, setCart] = useState<CartProps>({
+    coffeesOnCart: [],
+    cartQuantity: 0,
+  })
 
   function increaseCoffeeQuantity(coffeeId: string) {
-    // roda o Array dos cafés
+    // Iteração para adicionar a quantidade ao produto café
     const updatedCoffees = coffees.map((coffee) => {
-      // se o nome for igual ao id(id = nome do cafe, nao tem cafes iguais)
-      // ou seja, achei qual queria
+      // procurando o café selecionado
       if (coffee.name === coffeeId) {
-        // adicione +1 a quantidade de cafes
+        // adicione +1 a quantidade do café selecionado
         coffee.quantity += 1
 
-        // retorne o cafe modificado
         return coffee
       }
-
-      // retorna os cafes sem modificação
       return coffee
     })
 
-    setCartQuantity(cartQuantity + 1)
-    setCoffees(updatedCoffees)
+    setCoffees((state) => {
+      return state
+    })
+
+    // verificando se já existe outro café de mesmo nome
+    const sameCoffeeOnCart = coffeesOnCart.find((coffee) => {
+      return coffee.name === coffeeId
+    })
+
+    coffees.forEach((coffee) => {
+      // se o id e o name forem iguais E não existe um café de mesmo nome no carrinho
+      // adiciona o café no carrinho para aparecer em Checkout
+      if (coffee.name === coffeeId && !sameCoffeeOnCart?.name) {
+        setCoffeesOnCart((state) => {
+          return [...state, coffee]
+        })
+      }
+    })
+
+    const updatedCoffeesOnCart = coffeesOnCart
+
+    console.log('coffees to cart')
+    console.log(coffeesOnCart)
+    // setCart({
+    //   cartQuantity: cart.cartQuantity + 1,
+    //   coffeesOnCart: updatedCoffeesOnCart,
+    // })
+
+    // console.log('cart')
+    // console.log(cart)
+
+    setCartQuantity((state) => {
+      return (state += 1)
+    })
   }
 
   function decreaseCoffeeQuantity(coffeeId: string) {
-    const updatedCoffes = coffees.map((coffee) => {
+    const updatedCoffees = coffees.map((coffee) => {
       if (coffee.name === coffeeId) {
         if (coffee.quantity >= 1) {
           coffee.quantity -= 1
-
-          setCartQuantity(cartQuantity - 1)
 
           return coffee
         }
@@ -139,14 +177,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return coffee
     })
 
-    setCoffees(updatedCoffes)
+    setCart({
+      cartQuantity: cart.cartQuantity - 1,
+      coffeesOnCart: updatedCoffees,
+    })
+    setCoffees(updatedCoffees)
   }
 
   return (
     <CartContext.Provider
       value={{
-        cartQuantity,
+        cart,
         coffees,
+        coffeesOnCart,
+        cartQuantity,
         increaseCoffeeQuantity,
         decreaseCoffeeQuantity,
       }}

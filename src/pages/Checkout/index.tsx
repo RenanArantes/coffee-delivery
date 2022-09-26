@@ -8,9 +8,10 @@ import {
   Plus,
   Trash,
 } from 'phosphor-react'
-import { ChangeEvent, useState, MouseEvent } from 'react'
+import { ChangeEvent, useState, MouseEvent, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import expressoTradicional from '../../assets/expresso_tradicional.png'
+import { CartContext } from '../../contexts/Cart'
 import {
   AddressContainer,
   CheckoutContainer,
@@ -43,6 +44,13 @@ import {
 
 export function Checkout() {
   const [paymentType, setPaymentType] = useState('')
+
+  const {
+    coffeesOnCart,
+    cart,
+    increaseCoffeeQuantity,
+    decreaseCoffeeQuantity,
+  } = useContext(CartContext)
 
   function handleSelected(e: ChangeEvent<HTMLInputElement>) {
     console.log(e.target.value)
@@ -150,130 +158,55 @@ export function Checkout() {
       <div>
         <Title>Cafés selecionados</Title>
         <TotalCoffeeContainer>
-          <CoffeeItem>
-            <CoffeeListContainer>
-              <img
-                src={'https://www.github.com/RenanArantes.png'}
-                alt="coffee_name"
-              />
-              <CoffeeInfo>
-                <p>Expresso Tradicional</p>
-                <CoffeeInfoButtonsContainer>
-                  <ButtonSpanQuantity>
-                    <Button type="button">
-                      <Minus size={14} />
-                    </Button>
-                    <span style={{ margin: '0px 9px' }}>1</span>
-                    <Button type="button">
-                      <Plus size={14} />
-                    </Button>
-                  </ButtonSpanQuantity>
-                  <ButtonSpanRemove>
-                    <Button type="button">
-                      <Trash size={14} color={'#8047F8'} /> Remover
-                    </Button>
-                  </ButtonSpanRemove>
-                </CoffeeInfoButtonsContainer>
-              </CoffeeInfo>
-            </CoffeeListContainer>
-            <div>
-              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
-            </div>
-          </CoffeeItem>
-          <Divisor />
-          <CoffeeItem>
-            <CoffeeListContainer>
-              <img
-                src={'https://www.github.com/RenanArantes.png'}
-                alt="coffee_name"
-              />
-              <CoffeeInfo>
-                <p>Expresso Tradicional</p>
-                <CoffeeInfoButtonsContainer>
-                  <ButtonSpanQuantity>
-                    <Button type="button">
-                      <Minus size={14} color={'#8047F8'} />
-                    </Button>
-                    <span style={{ margin: '0px 9px' }}>1</span>
-                    <Button type="button">
-                      <Plus size={14} color={'#8047F8'} />
-                    </Button>
-                  </ButtonSpanQuantity>
-                  <ButtonSpanRemove>
-                    <Button type="button">
-                      <Trash size={14} color={'#8047F8'} /> Remover
-                    </Button>
-                  </ButtonSpanRemove>
-                </CoffeeInfoButtonsContainer>
-              </CoffeeInfo>
-            </CoffeeListContainer>
-            <div>
-              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
-            </div>
-          </CoffeeItem>
-          <Divisor />
-          <CoffeeItem>
-            <CoffeeListContainer>
-              <img
-                src={'https://www.github.com/RenanArantes.png'}
-                alt="coffee_name"
-              />
-              <CoffeeInfo>
-                <p>Expresso Tradicional</p>
-                <CoffeeInfoButtonsContainer>
-                  <ButtonSpanQuantity>
-                    <Button type="button">
-                      <Minus size={14} color={'#8047F8'} />
-                    </Button>
-                    <span style={{ margin: '0px 9px' }}>1</span>
-                    <Button type="button">
-                      <Plus size={14} color={'#8047F8'} />
-                    </Button>
-                  </ButtonSpanQuantity>
-                  <ButtonSpanRemove>
-                    <Button type="button">
-                      <Trash size={14} color={'#8047F8'} /> Remover
-                    </Button>
-                  </ButtonSpanRemove>
-                </CoffeeInfoButtonsContainer>
-              </CoffeeInfo>
-            </CoffeeListContainer>
-            <div>
-              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
-            </div>
-          </CoffeeItem>
-          <Divisor />
-          <CoffeeItem>
-            <CoffeeListContainer>
-              <img
-                src={'https://www.github.com/RenanArantes.png'}
-                alt="coffee_name"
-              />
-              <CoffeeInfo>
-                <p>Expresso Tradicional</p>
-                <CoffeeInfoButtonsContainer>
-                  <ButtonSpanQuantity>
-                    <Button type="button">
-                      <Minus size={14} color={'#8047F8'} />
-                    </Button>
-                    <span style={{ margin: '0px 9px' }}>1</span>
-                    <Button type="button">
-                      <Plus size={14} color={'#8047F8'} />
-                    </Button>
-                  </ButtonSpanQuantity>
-                  <ButtonSpanRemove>
-                    <Button type="button">
-                      <Trash size={14} color={'#8047F8'} /> Remover
-                    </Button>
-                  </ButtonSpanRemove>
-                </CoffeeInfoButtonsContainer>
-              </CoffeeInfo>
-            </CoffeeListContainer>
-            <div>
-              <h3 style={{ fontSize: '16px', fontWeight: '700' }}>R$ 9,90</h3>
-            </div>
-          </CoffeeItem>
-          <Divisor />
+          {coffeesOnCart &&
+            coffeesOnCart.map((coffee) => {
+              return (
+                <div key={coffee.name}>
+                  <CoffeeItem>
+                    <CoffeeListContainer>
+                      <img src={coffee.url} alt={coffee.name} />
+                      <CoffeeInfo>
+                        <p>{coffee.name}</p>
+                        <CoffeeInfoButtonsContainer>
+                          <ButtonSpanQuantity>
+                            <Button
+                              type="button"
+                              onClick={() =>
+                                decreaseCoffeeQuantity(coffee.name)
+                              }
+                            >
+                              <Minus size={14} />
+                            </Button>
+                            <span style={{ margin: '0px 9px' }}>
+                              {coffee.quantity}
+                            </span>
+                            <Button type="button">
+                              <Plus size={14} />
+                            </Button>
+                          </ButtonSpanQuantity>
+                          <ButtonSpanRemove>
+                            <Button
+                              type="button"
+                              onClick={() =>
+                                increaseCoffeeQuantity(coffee.name)
+                              }
+                            >
+                              <Trash size={14} color={'#8047F8'} /> Remover
+                            </Button>
+                          </ButtonSpanRemove>
+                        </CoffeeInfoButtonsContainer>
+                      </CoffeeInfo>
+                    </CoffeeListContainer>
+                    <div>
+                      <h3 style={{ fontSize: '16px', fontWeight: '700' }}>
+                        R$ {coffee.price}0
+                      </h3>
+                    </div>
+                  </CoffeeItem>
+                  <Divisor />
+                </div>
+              )
+            })}
           <PricesContainer>
             <ValueSpan>
               <span>Total de itens</span>
