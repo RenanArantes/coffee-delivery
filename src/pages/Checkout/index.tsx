@@ -48,8 +48,8 @@ export function Checkout() {
   const {
     coffeesOnCart,
     cart,
-    increaseCoffeeQuantity,
-    decreaseCoffeeQuantity,
+    increaseCoffeeOnCartQuantity,
+    decreaseCoffeeOnCartQuantity,
   } = useContext(CartContext)
 
   function handleSelected(e: ChangeEvent<HTMLInputElement>) {
@@ -172,7 +172,7 @@ export function Checkout() {
                             <Button
                               type="button"
                               onClick={() =>
-                                decreaseCoffeeQuantity(coffee.name)
+                                decreaseCoffeeOnCartQuantity(coffee.name)
                               }
                             >
                               <Minus size={14} />
@@ -180,17 +180,17 @@ export function Checkout() {
                             <span style={{ margin: '0px 9px' }}>
                               {coffee.quantity}
                             </span>
-                            <Button type="button">
+                            <Button
+                              type="button"
+                              onClick={() =>
+                                increaseCoffeeOnCartQuantity(coffee.name)
+                              }
+                            >
                               <Plus size={14} />
                             </Button>
                           </ButtonSpanQuantity>
                           <ButtonSpanRemove>
-                            <Button
-                              type="button"
-                              onClick={() =>
-                                increaseCoffeeQuantity(coffee.name)
-                              }
-                            >
+                            <Button type="button">
                               <Trash size={14} color={'#8047F8'} /> Remover
                             </Button>
                           </ButtonSpanRemove>
