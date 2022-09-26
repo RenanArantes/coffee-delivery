@@ -48,6 +48,7 @@ export function Checkout() {
   const {
     coffeesOnCart,
     cart,
+    removeCoffeeFromCart,
     increaseCoffeeOnCartQuantity,
     decreaseCoffeeOnCartQuantity,
   } = useContext(CartContext)
@@ -190,7 +191,10 @@ export function Checkout() {
                             </Button>
                           </ButtonSpanQuantity>
                           <ButtonSpanRemove>
-                            <Button type="button">
+                            <Button
+                              type="button"
+                              onClick={() => removeCoffeeFromCart(coffee.name)}
+                            >
                               <Trash size={14} color={'#8047F8'} /> Remover
                             </Button>
                           </ButtonSpanRemove>

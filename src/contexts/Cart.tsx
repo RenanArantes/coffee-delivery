@@ -28,6 +28,7 @@ interface CartContextProps {
   coffees: CoffeeProps[]
   coffeesOnCart: CoffeeProps[]
   cartQuantity: number
+  removeCoffeeFromCart: (coffeeId: string) => void
   increaseCoffeeQuantity: (coffeeId: string) => void
   increaseCoffeeOnCartQuantity: (coffeeId: string) => void
   decreaseCoffeeQuantity: (coffeeId: string) => void
@@ -227,8 +228,35 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function removeCoffeeFromCart(coffeeId: string) {
+    const updatedCoffeesOnCart = coffeesOnCart.filter(
+      (coffee) => coffee.name !== coffeeId,
+    )
+
+    setCoffeesOnCart((state) => {
+      return updatedCoffeesOnCart
+    })
+  }
+
   function decreaseCoffeeOnCartQuantity(coffeeId: string) {
-    console.log(coffeeId)
+    const updatedCoffeesOnCartQuantity = coffeesOnCart.map((coffee) => {
+      if (coffee.name === coffeeId) {
+        coffee.quantity -= 1
+
+        return coffee
+      }
+      return coffee
+    })
+
+    if (updatedCoffeesOnCartQuantity) {
+      const updatedCoffeesOnCart = updatedCoffeesOnCartQuantity.filter(
+        (coffee) => coffee.quantity >= 1,
+      )
+
+      setCoffeesOnCart((state) => {
+        return updatedCoffeesOnCart
+      })
+    }
   }
 
   return (
@@ -238,6 +266,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         coffees,
         coffeesOnCart,
         cartQuantity,
+        removeCoffeeFromCart,
         increaseCoffeeQuantity,
         increaseCoffeeOnCartQuantity,
         decreaseCoffeeQuantity,
