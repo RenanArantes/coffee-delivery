@@ -12,6 +12,7 @@ import { ChangeEvent, useState, MouseEvent, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import expressoTradicional from '../../assets/expresso_tradicional.png'
 import { CartContext } from '../../contexts/Cart'
+import formatCurrency from '../../utils/formatCurrency'
 import {
   AddressContainer,
   CheckoutContainer,
@@ -44,10 +45,12 @@ import {
 
 export function Checkout() {
   const [paymentType, setPaymentType] = useState('')
+  const deliveryValue = 10
 
   const {
     coffeesOnCart,
     cart,
+    totalValue,
     removeCoffeeFromCart,
     increaseCoffeeOnCartQuantity,
     decreaseCoffeeOnCartQuantity,
@@ -60,6 +63,8 @@ export function Checkout() {
       return e.target.value
     })
   }
+
+  console.log(`total value: ${totalValue}`)
 
   return (
     <CheckoutContainer>
@@ -214,15 +219,15 @@ export function Checkout() {
           <PricesContainer>
             <ValueSpan>
               <span>Total de itens</span>
-              <span>R$ 9,90</span>
+              <span>R$ {formatCurrency(totalValue)}</span>
             </ValueSpan>
             <ValueSpan>
               <span>Entrega</span>
-              <span>R$ 2,00</span>
+              <span>R$ {formatCurrency(deliveryValue)}</span>
             </ValueSpan>
             <ValueSpanTotal>
               <span>Total</span>
-              <span>R$ 11,90</span>
+              <span>R$ {formatCurrency(totalValue + deliveryValue)}</span>
             </ValueSpanTotal>
             <Link to="/success">
               <ButtonTotal type="submit">

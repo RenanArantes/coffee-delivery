@@ -28,6 +28,7 @@ interface CartContextProps {
   coffees: CoffeeProps[]
   coffeesOnCart: CoffeeProps[]
   cartQuantity: number
+  totalValue: number
   removeCoffeeFromCart: (coffeeId: string) => void
   increaseCoffeeQuantity: (coffeeId: string) => void
   increaseCoffeeOnCartQuantity: (coffeeId: string) => void
@@ -112,6 +113,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   ])
   const [coffeesOnCart, setCoffeesOnCart] = useState<CoffeeProps[]>([])
   const [cartQuantity, setCartQuantity] = useState(0)
+  const [totalValue, setTotalValue] = useState(0)
 
   const [cart, setCart] = useState<CartProps>({
     coffeesOnCart: [],
@@ -125,6 +127,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       if (coffee.name === coffeeId) {
         // adicione +1 a quantidade do café selecionado
         coffee.quantity += 1
+        setTotalValue((state) => {
+          return (state += coffee.price)
+        })
 
         return coffee
       }
@@ -173,6 +178,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         if (coffee.quantity >= 1) {
           coffee.quantity -= 1
 
+          setTotalValue((state) => {
+            return (state -= coffee.price)
+          })
           setCartQuantity((state) => {
             return (state -= 1)
           })
@@ -206,11 +214,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function calculateTotalCart(coffees: CoffeeProps[]) {
+    const total = coffees.reduce((total, coffee) => total + coffee.price, 0)
+
+    setTotalValue((state) => (state += total))
+  }
+
   function increaseCoffeeOnCartQuantity(coffeeId: string) {
     const updatedCoffeesOnCart = coffeesOnCart.map((coffee) => {
       if (coffee.name === coffeeId) {
         coffee.quantity += 1
 
+        setTotalValue((state) => {
+          return (state += coffee.price)
+        })
         setCartQuantity((state) => {
           return (state += 1)
         })
@@ -225,6 +242,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       setCoffeesOnCart((state) => {
         return updatedCoffeesOnCart
       })
+
+      // calculateTotalCart(coffeesOnCart)
     }
   }
 
@@ -242,6 +261,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     const updatedCoffeesOnCartQuantity = coffeesOnCart.map((coffee) => {
       if (coffee.name === coffeeId) {
         coffee.quantity -= 1
+
+        setTotalValue((state) => {
+          return (state -= coffee.price)
+        })
+        setCartQuantity((state) => {
+          return (state -= 1)
+        })
 
         return coffee
       }
@@ -266,6 +292,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         coffees,
         coffeesOnCart,
         cartQuantity,
+        totalValue,
         removeCoffeeFromCart,
         increaseCoffeeQuantity,
         increaseCoffeeOnCartQuantity,
