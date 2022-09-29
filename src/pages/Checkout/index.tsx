@@ -89,10 +89,13 @@ const newOrderValidationSchema = zod.object({
   }),
 })
 
+type NewOrderFormData = zod.infer<typeof newOrderValidationSchema>
+
 export function Checkout() {
   const [paymentType, setPaymentType] = useState('')
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(newOrderValidationSchema),
+    defaultValues: {},
   })
 
   const deliveryValue = 10
@@ -106,7 +109,7 @@ export function Checkout() {
     decreaseCoffeeOnCartQuantity,
   } = useContext(CartContext)
 
-  function handleCreateNewOrder(data: any) {
+  function handleCreateNewOrder(data: NewOrderFormData) {
     console.log('Formulário submetido.')
 
     console.log(data)
