@@ -75,23 +75,18 @@ const ufs = [
 ]
 
 const newOrderValidationSchema = zod.object({
-  code: zod
-    .string()
-    .min(8, 'Consulte o CEP da sua região.')
-    .max(8, 'Consulte o CEP da sua região.'),
+  code: zod.number(),
   street: zod.string(),
   complement: zod.string(),
   city: zod.string(),
-  house_number: zod.string().refine((val) => !Number.isNaN(parseInt(val)), {
-    message: 'Expected a number, recived a string',
-  }),
+  house_number: zod.number(),
   state: zod
     .string()
     .max(2, 'Consulte o código da sua UF.')
     .min(2, 'Consulte o código da sua UF.'),
-  // payment_type: zod.string({
-  //   description: 'Expected credit_card or debit_card or specie',
-  // }),
+  payment_type: zod.string({
+    description: 'tipo do pagamento',
+  }),
 })
 
 export function Checkout() {
@@ -112,14 +107,8 @@ export function Checkout() {
   } = useContext(CartContext)
 
   function handleCreateNewOrder(data: any) {
-    console.log('asdasdas')
-    if (data) {
-      if (paymentType !== '') {
-        data.payment_type = paymentType
-      } else {
-        alert('Você deve selecionar o tipo de pagamento.')
-      }
-    }
+    console.log('Formulário submetido.')
+
     console.log(data)
   }
 
@@ -130,8 +119,7 @@ export function Checkout() {
       return e.target.value
     })
   }
-
-  console.log(`total value: ${totalValue}`)
+  console.log('form')
   console.log(formState.errors)
 
   return (
@@ -158,9 +146,10 @@ export function Checkout() {
               <input
                 id="code"
                 type="number"
-                maxLength={5}
                 placeholder="CEP"
-                {...register('code')}
+                {...register('code', {
+                  valueAsNumber: true,
+                })}
               />
             </MediumInput>
 
@@ -174,7 +163,9 @@ export function Checkout() {
                   id="house_number"
                   type="number"
                   placeholder="Número"
-                  {...register('house_number')}
+                  {...register('house_number', {
+                    valueAsNumber: true,
+                  })}
                 />
               </MediumInput>
               <LargeInput>
@@ -227,11 +218,12 @@ export function Checkout() {
             </InfoPaymentType>
             <div style={{ display: 'flex' }}>
               <PaymentInput
-                type="radio"
                 id="credit_card"
-                name="payment_type"
+                type="radio"
                 value="credit_card"
-                onChange={handleSelected}
+                {...register('payment_type', {
+                  onChange: handleSelected,
+                })}
               />
               <SelectPaymentLabel htmlFor="credit_card">
                 <CreditCard size={16} />
@@ -239,11 +231,12 @@ export function Checkout() {
               </SelectPaymentLabel>
 
               <PaymentInput
-                type="radio"
                 id="debit_card"
-                name="payment_type"
+                type="radio"
                 value="debit_card"
-                onChange={handleSelected}
+                {...register('payment_type', {
+                  onChange: handleSelected,
+                })}
               />
               <SelectPaymentLabel htmlFor="debit_card">
                 <Bank size={16} />
@@ -251,11 +244,12 @@ export function Checkout() {
               </SelectPaymentLabel>
 
               <PaymentInput
-                type="radio"
                 id="specie"
-                name="payment_type"
+                type="radio"
                 value="specie"
-                onChange={handleSelected}
+                {...register('payment_type', {
+                  onChange: handleSelected,
+                })}
               />
               <SelectPaymentLabel htmlFor="specie">
                 <Money size={16} />
