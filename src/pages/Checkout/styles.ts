@@ -107,6 +107,16 @@ export const BaseInputLabel = styled.span<LargeInputProps>`
   input:focus {
     outline: none;
   }
+
+  input::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 export const SmallInput = styled(BaseInputLabel)`
   max-width: 60px;
