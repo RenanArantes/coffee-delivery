@@ -43,6 +43,8 @@ import {
   ButtonTotal,
   PaymentInput,
 } from './styles'
+import { OrderContext } from '../../contexts/Order'
+import { useNavigate } from 'react-router-dom'
 
 const ufs = [
   'RS',
@@ -79,6 +81,7 @@ const newOrderValidationSchema = zod.object({
   street: zod.string(),
   complement: zod.string(),
   city: zod.string(),
+  district: zod.string(),
   house_number: zod.number(),
   state: zod
     .string()
@@ -93,16 +96,27 @@ type NewOrderFormData = zod.infer<typeof newOrderValidationSchema>
 
 export function Checkout() {
   const [paymentType, setPaymentType] = useState('')
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     resolver: zodResolver(newOrderValidationSchema),
-    defaultValues: {},
+    defaultValues: {
+      code: 0,
+      street: '',
+      house_number: 0,
+      complement: '',
+      district: '',
+      city: '',
+      state: '',
+      payment_type: '',
+    },
   })
 
   const deliveryValue = 10
 
+  const { createNewOrder } = useContext(OrderContext)
+  const navigate = useNavigate()
+
   const {
     coffeesOnCart,
-    cart,
     totalValue,
     removeCoffeeFromCart,
     increaseCoffeeOnCartQuantity,
@@ -111,8 +125,33 @@ export function Checkout() {
 
   function handleCreateNewOrder(data: NewOrderFormData) {
     console.log('Formulário submetido.')
+    const {
+      code,
+      street,
+      house_number,
+      complement,
+      district,
+      city,
+      state,
+      payment_type,
+    } = data
 
-    console.log(data)
+    const dataOrder = {
+      address: {
+        code,
+        street,
+        house_number,
+        complement,
+        district,
+        city,
+        state,
+      },
+      paymentType: payment_type,
+      totalValue,
+    }
+
+    createNewOrder(dataOrder)
+    navigate('/success')
   }
 
   function handleSelected(e: ChangeEvent<HTMLInputElement>) {
@@ -122,15 +161,13 @@ export function Checkout() {
       return e.target.value
     })
   }
-  console.log('form')
-  console.log(formState.errors)
 
   return (
     <CheckoutContainer>
       <div>
         <Title>Complete seu pedido</Title>
         <form
-          id="adress-form"
+          id="address-form"
           onSubmit={handleSubmit(handleCreateNewOrder)}
           action=""
           autoComplete="off"
@@ -262,7 +299,6 @@ export function Checkout() {
           </PaymentContainer>
         </form>
       </div>
-
       <div>
         <Title>Cafés selecionados</Title>
         <TotalCoffeeContainer>
@@ -336,7 +372,7 @@ export function Checkout() {
                   : 0}
               </span>
             </ValueSpanTotal>
-            <ButtonTotal type="submit" form="adress-form">
+            <ButtonTotal type="submit" form="address-form">
               <span>CONFIRMAR PEDIDO</span>
             </ButtonTotal>
           </PricesContainer>
